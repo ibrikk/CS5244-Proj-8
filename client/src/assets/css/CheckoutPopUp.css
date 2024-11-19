@@ -118,3 +118,25 @@ input {
   color: black;
   border: 1px solid #ccc;
 }
+
+/* .total-border {
+  border: 1px solid #ccc;
+  margin: 5px;
+} */
+
+.total-container {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.items-b4tax-price {
+  padding-bottom: 5px;
+}
+
+.surcharge {
+  padding-bottom: 5px;
+}
+
+.total-text-price {
+  font-weight: bold;
+}

@@ -247,6 +247,23 @@ const CheckoutPopup: React.FC = () => {
             </select>
           </div>
 
+          <div className="total-border">
+            <div className="total-container">
+              <div className="items-b4tax-price">
+                <span>Items (8): &nbsp;</span>
+                <span>65.00</span>
+              </div>
+              <div className="surcharge">
+                <span>Surcharge: &nbsp;</span>
+                <span>5.00</span>
+              </div>
+              <div className="total-text-price">
+                <span>Total: &nbsp;</span>
+                <span>70.00</span>
+              </div>
+            </div>
+          </div>
+
           <button type="submit" className="submit-btn">
             Complete Purchase
           </button>
