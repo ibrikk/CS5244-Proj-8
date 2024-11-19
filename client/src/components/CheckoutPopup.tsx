@@ -51,6 +51,14 @@ const CheckoutPopup: React.FC = () => {
   //   error: false,
   // });
 
+  enum CheckoutStatus {
+    Pending = "PENDING",
+    Error = "ERROR",
+    OK = "OK",
+  }
+
+  const [checkoutStatus, setCheckOutStatus] = useState<CheckoutStatus | "">("");
+
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -131,15 +139,21 @@ const CheckoutPopup: React.FC = () => {
     return isValid;
   };
 
-  // TO DO submitOrder function comes here. See the project Spec
   const submitOrder = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted:", formData);
+      setCheckOutStatus(CheckoutStatus.Pending);
+      setTimeout(() => {
+        setCheckOutStatus(CheckoutStatus.OK);
+        setTimeout(() => {
+          navigate("/confirmation");
+        }, 1000);
+      }, 1000);
       // Send the data to your server
       dispatch({ type: "CLEAR" });
-      navigate("/confirmation");
     } else {
+      setCheckOutStatus(CheckoutStatus.Error);
       console.log("Form has errors");
     }
   };
