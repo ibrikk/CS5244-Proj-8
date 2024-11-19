@@ -31,7 +31,7 @@ import worldWalkers from "./assets/images/books/World_of_walkers.jpg";
 // Business
 import zeroToOne from "./assets/images/books/startup.jpg";
 import startupWife from "./assets/images/books/Startup_Wife.jpg";
-import ceoMind from "./assets/images/books/CEO Mind.gif";
+// import ceoMind from "./assets/images/books/CEO Mind.gif";
 import wolrdBusiness from "./assets/images/books/worldBusiness.jpg";
 import britishBusinessman from "./assets/images/books/britishBusinessman.jpg";
 
@@ -437,7 +437,7 @@ const mockData: CategoryMock[] = [
           "The Mind of the CEO: The World's Business Leaders Talk about Leadership, Responsibility the Future of the Corporation, and What Keeps Them Up at Night",
         author: "Jeffrey E. Garten",
         price: 29.99,
-        picture: ceoMind,
+        picture: startupWife,
         pictureDescription: "The Mind of the CEO book cover",
         isPublic: true,
       },

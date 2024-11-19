@@ -153,7 +153,7 @@ const imageMap: { [key: string]: { [key: number]: string } } = {
   Business: {
     1037: zeroToOne,
     1038: startupWife,
-    1039: ceoMind,
+    1039: noImage,
     1040: wolrdBusiness,
     1041: britishBusinessman,
   },
