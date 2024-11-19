@@ -243,44 +243,46 @@ const CheckoutPopup: React.FC = () => {
           </div>
           <> {ccNumberError && <div className="error"> {ccNumberError}</div>}</>
 
-          <div className="form-group">
-            <label htmlFor="ccExpiryMonth">Expiry Month</label>
-            <select
-              className="checkout-select"
-              id="ccExpiryMonth"
-              name="ccExpiryMonth"
-              value={formData.ccExpiryMonth}
-              onChange={handleInputChange}
-            >
-              <option value="" disabled>
-                Select Month
-              </option>
-              {months.map((month) => (
-                <option key={month} value={month}>
-                  {month}
+          <div className="month-year">
+            <div className="form-group">
+              <label htmlFor="ccExpiryMonth">Expiry Month</label>
+              <select
+                className="checkout-select"
+                id="ccExpiryMonth"
+                name="ccExpiryMonth"
+                value={formData.ccExpiryMonth}
+                onChange={handleInputChange}
+              >
+                <option value="" disabled>
+                  Select Month
                 </option>
-              ))}
-            </select>
-          </div>
+                {months.map((month) => (
+                  <option key={month} value={month}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="ccExpiryYear">Expiry Year</label>
-            <select
-              className="checkout-select"
-              id="ccExpiryYear"
-              name="ccExpiryYear"
-              value={formData.ccExpiryYear}
-              onChange={handleInputChange}
-            >
-              <option value="" disabled>
-                Select Year
-              </option>
-              {years.map((year) => (
-                <option key={year} value={year}>
-                  {nowYear + year}
+            <div className="form-group">
+              <label htmlFor="ccExpiryYear">Expiry Year</label>
+              <select
+                className="checkout-select"
+                id="ccExpiryYear"
+                name="ccExpiryYear"
+                value={formData.ccExpiryYear}
+                onChange={handleInputChange}
+              >
+                <option value="" disabled>
+                  Select Year
                 </option>
-              ))}
-            </select>
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {nowYear + year}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="total-border">

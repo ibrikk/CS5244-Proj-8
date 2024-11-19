@@ -78,6 +78,11 @@
   flex: 1;
 }
 
+.month-year {
+  display: flex;
+  justify-content: space-between;
+}
+
 label {
   margin-bottom: 5px;
 }
