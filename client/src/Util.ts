@@ -99,7 +99,7 @@ import diyStringArt from "./assets/images/books/diyStringArt.jpg";
 
 // Default image
 import noImage from "./assets/images/books/no-image.jpg";
-import { BookItem } from "./Types";
+import { BookItem, ShoppingCartItem } from "./Types";
 
 const imageMap: { [key: string]: { [key: number]: string } } = {
   "New Releases": {
@@ -283,3 +283,11 @@ export function isCreditCard(str: string) {
 
   return !!(sum % 10 === 0 ? sanitized : false);
 }
+
+export const subtotal = (cart: any) => {
+  let sum = 0;
+  for (const item of cart) {
+    sum += item.items.price * item.quantity;
+  }
+  return sum;
+};

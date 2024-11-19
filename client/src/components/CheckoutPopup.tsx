@@ -1,9 +1,16 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 
 import "../assets/css/CheckoutPopUp.css";
 import { Barcode } from "lucide-react";
 import { CustomerForm, ServerErrorResponse, months, years } from "../Types";
-import { isCreditCard, isMobilePhone, isvalidEmail } from "../Util";
+import {
+  asDollarsAndCents,
+  isCreditCard,
+  isMobilePhone,
+  isvalidEmail,
+  subtotal,
+} from "../Util";
+import { CartContext } from "../contexts/CartContext";
 
 const CheckoutPopup: React.FC = () => {
   const now = new Date();
@@ -12,6 +19,8 @@ const CheckoutPopup: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCheckout = () => setIsOpen(!isOpen);
+
+  const { cart } = useContext(CartContext);
 
   const [formData, setFormData] = useState<CustomerForm>({
     name: "",
@@ -127,6 +136,8 @@ const CheckoutPopup: React.FC = () => {
       console.log("Form has errors");
     }
   };
+
+  console.log("Cart:", cart);
 
   return (
     <div>
@@ -250,16 +261,20 @@ const CheckoutPopup: React.FC = () => {
           <div className="total-border">
             <div className="total-container">
               <div className="items-b4tax-price">
-                <span>Items (8): &nbsp;</span>
-                <span>65.00</span>
+                <span>Items ({cart.length}): &nbsp;</span>
+                <span>{asDollarsAndCents(subtotal(cart))}</span>
               </div>
               <div className="surcharge">
                 <span>Surcharge: &nbsp;</span>
-                <span>5.00</span>
+                <span>{asDollarsAndCents((subtotal(cart) * 5.3) / 100)}</span>
               </div>
               <div className="total-text-price">
                 <span>Total: &nbsp;</span>
-                <span>70.00</span>
+                <span>
+                  {asDollarsAndCents(
+                    subtotal(cart) + (subtotal(cart) * 5.3) / 100
+                  )}
+                </span>
               </div>
             </div>
           </div>
