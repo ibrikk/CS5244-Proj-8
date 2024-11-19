@@ -19,11 +19,11 @@
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-h2 {
+.order-conf-h2 {
   color: var(--primary-color);
   margin-bottom: 16px;
 }
-p {
+.order-conf-p {
   margin-bottom: 12px;
   line-height: 1.5;
 }

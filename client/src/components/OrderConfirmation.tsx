@@ -6,14 +6,10 @@ const OrderConfirmation = () => {
   return (
     <div className="confirmation-container">
       <div className="confirmation-content">
-        <h2>Order Confirmed!</h2>
-        <p>
+        <h2 className="order-conf-h2">Order Confirmed!</h2>
+        <p className="order-conf-p">
           Thank you for your purchase. Your order has been successfully placed.
         </p>
-        {/* <p>
-          Order Number: <strong>{orderNumber}</strong>
-        </p> */}
-        {/* <p>A confirmation email has been sent to your email address.</p> */}
         <button onClick={() => navigate("/")} className="close-button">
           Close
         </button>
