@@ -117,6 +117,7 @@ const CheckoutPopup: React.FC = () => {
     Object.keys(formData).forEach((key) => {
       validateField(key, formData[key as keyof CustomerForm] as string);
       if (
+        (formData[key as keyof CustomerForm] as string).length === 0 ||
         (key === "name" && nameError) ||
         (key === "address" && addressError) ||
         (key === "phone" && phoneError) ||
