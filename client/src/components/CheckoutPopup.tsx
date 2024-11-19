@@ -24,7 +24,7 @@ const CheckoutPopup: React.FC = () => {
 
   const toggleCheckout = () => setIsOpen(!isOpen);
 
-  const { cart } = useContext(CartContext);
+  const { cart, dispatch } = useContext(CartContext);
 
   const [formData, setFormData] = useState<CustomerForm>({
     name: "",
@@ -137,6 +137,7 @@ const CheckoutPopup: React.FC = () => {
     if (validateForm()) {
       console.log("Form submitted:", formData);
       // Send the data to your server
+      dispatch({ type: "CLEAR" });
       navigate("/confirmation");
     } else {
       console.log("Form has errors");
