@@ -22,7 +22,7 @@ INSERT INTO `book` (title, author, description, price, rating, is_public, is_fea
 
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Taylor Swift: The New York Times Best Seller', 'Maria Isabel Sanchez Vegara, Borghild Fallberg (Illustrator)', '', 958, 0, FALSE, FALSE, 1003);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Welcome to the Club', 'Raquel Dapice', 'Welcome to the Club: 100 Parenting Milestones You Never Saw Coming (Parenting Books, Parenting Books Best Sellers, New Parents Gift)', 935, 0, TRUE, FALSE, 1003);
-INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Dancing with Cats', 'Burton Silver, Heather Busch', '', 1200, 0, FALSE, FALSE, 1003);
+INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Guinness World Records: Gamer\'s Edition 2025', 'Guinness World Records', '', 1092, 0, FALSE, FALSE, 1003);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Ablaze', 'Christopher Krovatin', '', 2100, 0, TRUE, FALSE, 1003);
 
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Melania', 'Melania Trump', '', 2731, 0, FALSE, FALSE, 1004);
@@ -51,7 +51,7 @@ INSERT INTO `book` (title, author, description, price, rating, is_public, is_fea
 
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Zero to One: Notes on Startups, or How to Build the Future', 'Peter Thiel', '',1699, 0, TRUE, FALSE, 1007);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('The Startup Wife', 'Tahmima Anam', '', 2790, 0, FALSE, FALSE, 1007);
-INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('The Mind of the CEO: The World\'s Business Leaders', 'Jeffrey E. Garten', '', 2999, 0, TRUE, FALSE, 1007);
+INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Trump: The Art of the Deal', 'Donald J Trump', '', 392, 0, TRUE, FALSE, 1007);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('The World\'s Business Cultures: How to Unlock Them', 'Barry Tomalin, Ma, Mike Nicks', '', 1244, 0, FALSE, FALSE, 1007);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Whenever I Hear That Song: The memoir', 'Martin Broughton', '', 2670, 0, TRUE, FALSE, 1007);
 
