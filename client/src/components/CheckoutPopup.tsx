@@ -6,6 +6,9 @@ import { CustomerForm, ServerErrorResponse, months, years } from "../Types";
 import { isCreditCard, isMobilePhone, isvalidEmail } from "../Util";
 
 const CheckoutPopup: React.FC = () => {
+  const now = new Date();
+  const nowYear = now.getFullYear();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCheckout = () => setIsOpen(!isOpen);
@@ -53,7 +56,7 @@ const CheckoutPopup: React.FC = () => {
         }
         break;
       case "email":
-        if (isvalidEmail(value)) {
+        if (!isvalidEmail(value)) {
           setEmailError("Invalid email address");
         } else {
           setEmailError("");
@@ -67,14 +70,14 @@ const CheckoutPopup: React.FC = () => {
         }
         break;
       case "phone":
-        if (isMobilePhone(value)) {
+        if (!isMobilePhone(value)) {
           setPhoneError("Phone number must be 10 digits");
         } else {
           setPhoneError("");
         }
         break;
       case "ccNumber":
-        if (isCreditCard(value)) {
+        if (!isCreditCard(value)) {
           setCcNumberError("Card number must be 16 digits");
         } else {
           setCcNumberError("");
@@ -213,6 +216,7 @@ const CheckoutPopup: React.FC = () => {
           <div className="form-group">
             <label htmlFor="ccExpiryMonth">Expiry Month</label>
             <select
+              className="checkout-select"
               id="ccExpiryMonth"
               name="ccExpiryMonth"
               value={formData.ccExpiryMonth}
@@ -229,6 +233,7 @@ const CheckoutPopup: React.FC = () => {
           <div className="form-group">
             <label htmlFor="ccExpiryYear">Expiry Year</label>
             <select
+              className="checkout-select"
               id="ccExpiryYear"
               name="ccExpiryYear"
               value={formData.ccExpiryYear}
@@ -236,7 +241,7 @@ const CheckoutPopup: React.FC = () => {
             >
               {years.map((year) => (
                 <option key={year} value={year}>
-                  {year}
+                  {nowYear + year}
                 </option>
               ))}
             </select>

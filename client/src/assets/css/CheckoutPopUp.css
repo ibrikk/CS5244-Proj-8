@@ -112,3 +112,9 @@ input {
   line-height: 15px;
   margin: 5px 0 0;
 }
+
+.checkout-select {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+}
