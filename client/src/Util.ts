@@ -291,3 +291,11 @@ export const subtotal = (cart: any) => {
   }
   return sum;
 };
+
+export const calculateTotalQuantity = (cart: any) => {
+  let sum = 0;
+  for (const item of cart) {
+    sum += item.quantity;
+  }
+  return sum;
+};

@@ -5,6 +5,7 @@ import { Barcode } from "lucide-react";
 import { CustomerForm, ServerErrorResponse, months, years } from "../Types";
 import {
   asDollarsAndCents,
+  calculateTotalQuantity,
   isCreditCard,
   isMobilePhone,
   isvalidEmail,
@@ -236,6 +237,9 @@ const CheckoutPopup: React.FC = () => {
               value={formData.ccExpiryMonth}
               onChange={handleInputChange}
             >
+              <option value="" disabled>
+                Select Month
+              </option>
               {months.map((month) => (
                 <option key={month} value={month}>
                   {month}
@@ -253,6 +257,9 @@ const CheckoutPopup: React.FC = () => {
               value={formData.ccExpiryYear}
               onChange={handleInputChange}
             >
+              <option value="" disabled>
+                Select Year
+              </option>
               {years.map((year) => (
                 <option key={year} value={year}>
                   {nowYear + year}
@@ -264,7 +271,7 @@ const CheckoutPopup: React.FC = () => {
           <div className="total-border">
             <div className="total-container">
               <div className="items-b4tax-price">
-                <span>Items ({cart.length}): &nbsp;</span>
+                <span>Items ({calculateTotalQuantity(cart)}): &nbsp;</span>
                 <span>{asDollarsAndCents(subtotal(cart))}</span>
               </div>
               <div className="surcharge">
