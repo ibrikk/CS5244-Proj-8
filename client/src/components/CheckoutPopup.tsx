@@ -15,6 +15,7 @@ import { CartContext } from "../contexts/CartContext";
 const CheckoutPopup: React.FC = () => {
   const now = new Date();
   const nowYear = now.getFullYear();
+  const VATAX = 5.3;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -266,13 +267,13 @@ const CheckoutPopup: React.FC = () => {
               </div>
               <div className="surcharge">
                 <span>Surcharge: &nbsp;</span>
-                <span>{asDollarsAndCents((subtotal(cart) * 5.3) / 100)}</span>
+                <span>{asDollarsAndCents((subtotal(cart) * VATAX) / 100)}</span>
               </div>
               <div className="total-text-price">
                 <span>Total: &nbsp;</span>
                 <span>
                   {asDollarsAndCents(
-                    subtotal(cart) + (subtotal(cart) * 5.3) / 100
+                    subtotal(cart) + (subtotal(cart) * VATAX) / 100
                   )}
                 </span>
               </div>
