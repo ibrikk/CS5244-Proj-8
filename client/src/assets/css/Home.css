@@ -156,6 +156,8 @@
 
 .cta-text {
   font-weight: lighter;
+  position: relative;
+  top: 7px;
 }
 
 .homepage-category-name {
