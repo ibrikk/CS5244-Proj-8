@@ -20,7 +20,9 @@ const Cart = () => {
         <>
           <ClearCartButton onClick={() => dispatch({ type: "CLEAR" })} />
           <CartTable />
-          <div className="total">Sub-total: {subtotal(cart)}</div>
+          <div className="total">
+            Sub-total: {asDollarsAndCents(subtotal(cart))}
+          </div>
           <div className="btn-container">
             <div>
               <ContinueShoppingButton onClick={() => navigate(-1)} />

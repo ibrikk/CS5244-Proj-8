@@ -11,6 +11,7 @@ import {
   subtotal,
 } from "../Util";
 import { CartContext } from "../contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutPopup: React.FC = () => {
   const now = new Date();
@@ -18,6 +19,7 @@ const CheckoutPopup: React.FC = () => {
   const VATAX = 5.3;
 
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleCheckout = () => setIsOpen(!isOpen);
 
@@ -52,8 +54,8 @@ const CheckoutPopup: React.FC = () => {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
     validateField(name, value);
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const validateField = (name: string, value: string) => {
@@ -132,13 +134,12 @@ const CheckoutPopup: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       console.log("Form submitted:", formData);
-      // Here you would typically send the data to your server
+      // Send the data to your server
+      navigate("/confirmation");
     } else {
       console.log("Form has errors");
     }
   };
-
-  console.log("Cart:", cart);
 
   return (
     <div>

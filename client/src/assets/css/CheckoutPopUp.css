@@ -97,6 +97,11 @@ input {
   cursor: pointer;
 }
 
+.submit-btn:hover {
+  background-color: var(--primary-color-dark);
+  transform: scale(1.05);
+}
+
 @media (max-width: 480px) {
   .checkout-panel {
     max-width: none;

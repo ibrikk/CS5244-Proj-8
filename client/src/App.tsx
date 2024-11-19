@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import CategoryPage from "./components/CategoryBookList";
@@ -8,6 +13,7 @@ import Footer from "./components/Footer";
 import "./assets/css/global.css";
 import "./App.css";
 import Cart from "./components/Cart";
+import OrderConfirmation from "./components/OrderConfirmation";
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -31,6 +37,7 @@ const App = () => {
               element={<CategoryPage toggleSignIn={toggleSignIn} />}
             />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/confirmation" element={<OrderConfirmation />} />
           </Routes>
         </main>
         <Footer />
