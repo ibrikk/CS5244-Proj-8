@@ -1,12 +1,129 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 
 import "../assets/css/CheckoutPopUp.css";
 import { Barcode } from "lucide-react";
+import { CustomerForm, ServerErrorResponse, months, years } from "../Types";
+import { isCreditCard, isMobilePhone, isvalidEmail } from "../Util";
 
 const CheckoutPopup: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCheckout = () => setIsOpen(!isOpen);
+
+  const [formData, setFormData] = useState<CustomerForm>({
+    name: "",
+    address: "",
+    phone: "",
+    email: "",
+    ccNumber: "",
+    ccExpiryMonth: 0,
+    ccExpiryYear: 0,
+  });
+
+  const [nameError, setNameError] = useState("");
+  const [addressError, setAddressError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [ccNumberError, setCcNumberError] = useState("");
+  // const [ccExpiryMonthError, setCcExpiryMonthError] = useState("");
+  // const [ccExpiryYearError, setCcExpiryYearError] = useState("");
+
+  // const [errors, setErrors] = useState<ServerErrorResponse>({
+  //   reason: "",
+  //   message: "",
+  //   fieldName: "",
+  //   error: false,
+  // });
+
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    validateField(name, value);
+  };
+
+  const validateField = (name: string, value: string) => {
+    switch (name) {
+      case "name":
+        if (value.length < 4 || value.length > 45) {
+          setNameError("Name must be at least 4 characters long!");
+        } else {
+          setNameError("");
+        }
+        break;
+      case "email":
+        if (isvalidEmail(value)) {
+          setEmailError("Invalid email address");
+        } else {
+          setEmailError("");
+        }
+        break;
+      case "address":
+        if (value.length < 10) {
+          setAddressError("Address must be at least 10 characters long");
+        } else {
+          setAddressError("");
+        }
+        break;
+      case "phone":
+        if (isMobilePhone(value)) {
+          setPhoneError("Phone number must be 10 digits");
+        } else {
+          setPhoneError("");
+        }
+        break;
+      case "ccNumber":
+        if (isCreditCard(value)) {
+          setCcNumberError("Card number must be 16 digits");
+        } else {
+          setCcNumberError("");
+        }
+        break;
+      case "ccExpiryMonth":
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: parseInt(value, 10),
+        }));
+        break;
+      case "ccExpiryYear":
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: parseInt(value, 10),
+        }));
+        break;
+      default:
+        break;
+    }
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+    Object.keys(formData).forEach((key) => {
+      validateField(key, formData[key as keyof CustomerForm] as string);
+      if (
+        (key === "name" && nameError) ||
+        (key === "address" && addressError) ||
+        (key === "phone" && phoneError) ||
+        (key === "email" && emailError) ||
+        (key === "ccNumber" && ccNumberError)
+      ) {
+        isValid = false;
+      }
+    });
+    return isValid;
+  };
+
+  // TO DO submitOrder function comes here. See the project Spec
+  const submitOrder = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (validateForm()) {
+      console.log("Form submitted:", formData);
+      // Here you would typically send the data to your server
+    } else {
+      console.log("Form has errors");
+    }
+  };
 
   return (
     <div>
@@ -28,56 +145,101 @@ const CheckoutPopup: React.FC = () => {
           </button>
         </div>
 
-        <form onSubmit={(e) => e.preventDefault()} className="checkout-form">
+        <form
+          onSubmit={(e) => submitOrder(e)}
+          method="post"
+          className="checkout-form"
+        >
           <div className="form-group">
             <label htmlFor="name">Full Name</label>
             <input
-              id="name"
+              id="fname"
               type="text"
-              placeholder="Ibrahim Khalilov"
-              required
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
             />
           </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="ibrahimk@vt.edu"
-              required
-            />
-          </div>
+          <> {nameError && <div className="error"> {nameError}</div>}</>
 
           <div className="form-group">
             <label htmlFor="address">Address</label>
             <input
-              id="address"
+              id="faddress"
               type="text"
-              placeholder="123 Main St, Virginia, United States"
-              required
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
             />
+          </div>
+          <> {addressError && <div className="error"> {addressError}</div>}</>
+
+          <div className="form-group">
+            <label htmlFor="phone">Phone</label>
+            <input
+              id="fphone"
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+            />
+          </div>
+          <> {phoneError && <div className="error"> {phoneError}</div>}</>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              id="femail"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+          </div>
+          <> {emailError && <div className="error"> {emailError}</div>}</>
+
+          <div className="form-group">
+            <label htmlFor="ccNumber">Credit Card</label>
+            <input
+              id="ccNumber"
+              type="text"
+              name="ccNumber"
+              value={formData.ccNumber}
+              onChange={handleInputChange}
+            />
+          </div>
+          <> {ccNumberError && <div className="error"> {ccNumberError}</div>}</>
+
+          <div className="form-group">
+            <label htmlFor="ccExpiryMonth">Expiry Month</label>
+            <select
+              id="ccExpiryMonth"
+              name="ccExpiryMonth"
+              value={formData.ccExpiryMonth}
+              onChange={handleInputChange}
+            >
+              {months.map((month) => (
+                <option key={month} value={month}>
+                  {month}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group">
-            <label htmlFor="card">Card Number</label>
-            <input
-              id="card"
-              type="text"
-              placeholder="1234 5678 9012 3456"
-              required
-            />
-          </div>
-
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="expiry">Expiry Date</label>
-              <input id="expiry" type="text" placeholder="MM/YY" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="cvv">CVV</label>
-              <input id="cvv" type="text" placeholder="123" required />
-            </div>
+            <label htmlFor="ccExpiryYear">Expiry Year</label>
+            <select
+              id="ccExpiryYear"
+              name="ccExpiryYear"
+              value={formData.ccExpiryYear}
+              onChange={handleInputChange}
+            >
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
 
           <button type="submit" className="submit-btn">
