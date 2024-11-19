@@ -123,6 +123,57 @@ export class ShoppingCartItem {
   }
 }
 
+export interface ContextProps {
+  children: JSX.Element | JSX.Element[];
+}
+
+export const months: string[] = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+export const years = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+export interface CustomerForm {
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  ccNumber: string;
+  ccExpiryMonth: number;
+  ccExpiryYear: number;
+}
+
+export interface Order {
+  orderId: number;
+  amount: number;
+  dateCreated: number;
+  confirmationNumber: number;
+  customerId: number;
+}
+
+export interface OrderDetails {
+  order: Order;
+  customer: CustomerForm;
+  books: BookItem[];
+}
+
+export interface ServerErrorResponse {
+  reason: string;
+  message: string;
+  fieldName: string;
+  error: boolean;
+}
+
 const mockData: CategoryMock[] = [
   {
     id: 1001,
