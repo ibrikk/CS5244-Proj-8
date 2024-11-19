@@ -57,28 +57,28 @@ const CheckoutPopup: React.FC = () => {
         break;
       case "email":
         if (!isvalidEmail(value)) {
-          setEmailError("Invalid email address");
+          setEmailError("Invalid email address!");
         } else {
           setEmailError("");
         }
         break;
       case "address":
         if (value.length < 10) {
-          setAddressError("Address must be at least 10 characters long");
+          setAddressError("Address must be at least 10 characters long!");
         } else {
           setAddressError("");
         }
         break;
       case "phone":
         if (!isMobilePhone(value)) {
-          setPhoneError("Phone number must be 10 digits");
+          setPhoneError("Phone number mis not valid!");
         } else {
           setPhoneError("");
         }
         break;
       case "ccNumber":
         if (!isCreditCard(value)) {
-          setCcNumberError("Card number must be 16 digits");
+          setCcNumberError("Card number is not valid!");
         } else {
           setCcNumberError("");
         }
