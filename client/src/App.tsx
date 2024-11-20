@@ -23,7 +23,13 @@ const App = () => {
   };
 
   return (
-    <Router basename="/IbrahimBookstoreReactValidate">
+    <Router
+      basename="/IbrahimBookstoreReactValidate"
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <div className="app-container">
         <Header isSignedIn={isSignedIn} />
         <main className="main-content">
